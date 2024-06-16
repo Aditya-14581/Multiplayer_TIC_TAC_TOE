@@ -4,12 +4,13 @@ import { StreamChat } from "stream-chat";
 import { v4 as uuidv4 } from "uuid";
 import bcrypt from "bcrypt";
 const app = express();
+import dotenv from "dotenv";
+dotenv.config();
 
 app.use(cors());
 app.use(express.json());
-const api_key = "9jv9jj4vgxeh";
-const api_secret =
-    "rsffvgnpc97skxbea8eba5rdxb6bzcghf8nugym2enrw8ra6p2fr4rrtathzzt8d";
+const api_key = process.env.API_KEY;
+const api_secret = process.env.SECRET_KEY;
 const serverClient = StreamChat.getInstance(api_key, api_secret);
 
 
@@ -53,5 +54,7 @@ app.post("/login", async (req, res) => {
 });
 
 app.listen(3001, () => {
+    console.log("API Key:", api_key);
+    console.log("Secret Key:", api_secret);
     console.log("Server is running on port 3001");
 });

@@ -4,11 +4,29 @@ import SignUp from "./components/SignUp";
 import { StreamChat } from "stream-chat";
 import { Chat } from "stream-chat-react";
 import Cookies from "universal-cookie";
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
+
+import "preline/preline";
+
+
 import JoinGame from "./components/JoinGame";
 
 function App() {
-  const api_key = "9jv9jj4vgxeh";
+  const location = useLocation();
+
+  useEffect(() => {
+    if (
+      window.HSStaticMethods &&
+      typeof window.HSStaticMethods.autoInit === "function"
+    ) {
+      window.HSStaticMethods.autoInit();
+    }
+  }, [location.pathname]);
+
+  const api_key = process.env.REACT_APP_API_KEY;
+  console.log("heelo", api_key);
   const cookies = new Cookies();
   const token = cookies.get("token");
   const client = StreamChat.getInstance(api_key);
@@ -44,6 +62,7 @@ function App() {
   }
   return (
     <div className="App">
+      <h1 className="text-xl text-green-900 text-center">App</h1>
       {isAuth ? (
         <Chat client={client}>
           <JoinGame />

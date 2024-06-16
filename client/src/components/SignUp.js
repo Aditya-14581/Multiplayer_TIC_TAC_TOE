@@ -20,6 +20,7 @@ function SignUp({ setIsAuth }) {
     });
   };
   return (
+    <>
     <div className="signUp">
       <label> Sign Up</label>
       <input
@@ -49,7 +50,10 @@ function SignUp({ setIsAuth }) {
       />
       <button onClick={signUp}> Sign Up</button>
     </div>
+</>
   );
 }
 
 export default SignUp;
+
+
