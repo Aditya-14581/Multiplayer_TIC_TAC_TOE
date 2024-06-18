@@ -1,4 +1,4 @@
-.gameContainer {
+/* .gameContainer {
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -6,7 +6,7 @@
     align-items: center;
     column-count: 2;
     column-gap: 100px;
-}
+} */
 
 .str-chat__list {
     background-color: white;

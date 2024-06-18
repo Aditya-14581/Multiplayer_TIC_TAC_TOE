@@ -31,6 +31,7 @@ function App() {
   const token = cookies.get("token");
   const client = StreamChat.getInstance(api_key);
   const [isAuth, setIsAuth] = useState(false);
+  const [isSigningUp, setIsSigningUp] = useState(true);
 
   const logOut = () => {
     cookies.remove("token");
@@ -61,21 +62,21 @@ function App() {
       });
   }
   return (
-    <div className="App">
-      <h1 className="text-xl text-green-900 text-center">App</h1>
+    <div className="App overflow-hidden">
       {isAuth ? (
-        <Chat client={client}>
-          <JoinGame />
-          <button onClick={logOut}> Log Out</button>
+        <Chat client={client} >
+          <JoinGame logOut={logOut} />
         </Chat>
       ) : (
         <>
-          <SignUp setIsAuth={setIsAuth} />
-          <Login setIsAuth={setIsAuth} />
+          {isSigningUp ? (
+            <SignUp setIsAuth={setIsAuth} setIsSigningUp={setIsSigningUp} />
+          ) : (
+            <Login setIsAuth={setIsAuth} setIsSigningUp={setIsSigningUp} />
+          )}
         </>
       )}
     </div>
   );
 }
-
 export default App;
