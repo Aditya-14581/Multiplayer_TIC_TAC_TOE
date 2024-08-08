@@ -7,12 +7,18 @@ function Login({ setIsAuth, setIsSigningUp }) {
   const [password, setPassword] = useState("");
 
   const cookies = new Cookies();
-  const login = (event) => {
-    event.preventDefault();
-    Axios.post("http://localhost:3001/login", {
+
+const login = (event) => {
+  event.preventDefault();
+  Axios.post(
+    // "https://react-chat-app-backend.pages.dev/login",
+    "http://localhost:3001/login",
+    {
       username,
       password,
-    }).then((res) => {
+    }
+  )
+    .then((res) => {
       const { firstName, lastName, username, token, userId } = res.data;
       cookies.set("token", token);
       cookies.set("userId", userId);
@@ -20,8 +26,12 @@ function Login({ setIsAuth, setIsSigningUp }) {
       cookies.set("firstName", firstName);
       cookies.set("lastName", lastName);
       setIsAuth(true);
+    })
+    .catch((error) => {
+      console.error("There was an error logging in!", error);
+      // Handle error appropriately
     });
-  };
+};
   return (
     <>
       <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm">

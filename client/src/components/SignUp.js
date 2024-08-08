@@ -11,9 +11,11 @@ function SignUp({ setIsAuth, setIsSigningUp }) {
     password: "",
   });
 
-  const signUp = (event) => {
-    event.preventDefault(); // Prevent the default form submission
-    Axios.post("http://localhost:3001/signup", user).then((res) => {
+const signUp = (event) => {
+  event.preventDefault(); // Prevent the default form submission
+  // Axios.post("https://react-chat-app-backend.pages.dev/signup", user, {
+  Axios.post("http://localhost:3001/signup", user)
+    .then((res) => {
       const { token, userId, firstName, lastName, username, hashedPassword } =
         res.data;
       cookies.set("token", token);
@@ -23,8 +25,11 @@ function SignUp({ setIsAuth, setIsSigningUp }) {
       cookies.set("lastName", lastName);
       cookies.set("hashedPassword", hashedPassword);
       setIsAuth(true);
+    })
+    .catch((error) => {
+      console.error("There was an error signing up!", error);
     });
-  };
+};
 
   return (
     <>

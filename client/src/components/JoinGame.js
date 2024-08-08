@@ -31,16 +31,6 @@ function JoinGame({logOut}) {
         </Channel>
       ) : (
         <>
-          {/* <div className="joinGame">
-            <h4>Create Game</h4>
-            <input
-              placeholder="Username of rival..."
-              onChange={(event) => {
-                setRivalUsername(event.target.value);
-              }}
-            />
-            <button onClick={createChannel}> Join/Start Game</button>
-          </div> */}
           <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm">
             <div className="p-4 sm:p-7">
               <div className="text-center">
